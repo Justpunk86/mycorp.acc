@@ -1,5 +1,6 @@
 create table employees(
 	emp_id					integer generated always as identity not null,
+	person_num				text not null default 'mc-'||emp_id,
 	last_name				text not null,
 	first_name				text not null,
 	father_name 			text not null,
@@ -7,7 +8,6 @@ create table employees(
 	tin						bigint unique not null,
 	passport_sn				integer unique not null,
 	passport_num 			integer unique not null,
-	insurance_qty_after		interval not null,
 	onboarding_date			date not null,
 	leaving_date			date,
 	insurance_start_date	date not null,
@@ -65,4 +65,46 @@ create table emp_piecework_data (
 
 );
 
+create table emp_bonus_data	(
+	emp_id			integer not null,
+	payment_date	date not null,
+	amount			Numeric(999,2) not null,
+	primary key(emp_id),
+	foreign key(emp_id) references employees(emp_id)
+);
 
+create table dic_sick_rate(
+id			integer generated always as identity not null,
+min_value	integer	not null,
+max_value	integer not null,
+rate		numeric not null,
+constraint uniq_dic_sick_rate unique(id)
+);
+
+create table dic_pay_params(	
+id			integer generated always as identity not null,
+param_name	text not null,
+value		numeric not null,
+constraint uniq_dic_pay_params unique(id)
+);
+
+create table emp_jobs_before(	
+emp_id		integer,
+start_date	date not null,
+end_date	date not null,
+corp_name	text not null,
+constraint uniq_emp_jobs_before unique(emp_id,start_date,end_date),
+check ( end_date >= start_date),
+foreign key(emp_id) references employees(emp_id)
+);
+
+/*create table emp_time_sheet(	
+emp_id		integer not null,
+month		integer not null,
+year		integer not null,
+worked_days	integer not null,
+foreign key(emp_id) references employees(emp_id),
+check ( worked_days > 0 ),
+constraint uniq_emp_time_sheet unique(emp_id, month, year)
+);
+*/
