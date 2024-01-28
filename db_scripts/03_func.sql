@@ -283,7 +283,7 @@ as $$
 	where e.person_num  = in_person_num;
 $$ language sql;
 
-drop function get_avg_earning;
+
 
 create function get_avg_earning(in_person_num text, in_year integer)
 returns numeric
@@ -325,35 +325,61 @@ end;
 $$ language plpgsql;
 
 
+
 create function get_sick_payment(in_person_num text, in_month integer, in_year integer)
 returns numeric
 as $$
 	 select 
 			case 
+				when
+					extract(year from justify_interval(get_seniority(e.person_num))) = 0 and
+					extract(month from justify_interval(get_seniority(e.person_num))) <= 6 
+				then 
+					get_sick_days(e.person_num, in_month, in_year) * 
+						trunc((select dpp.value 
+								from dic_pay_params dpp 
+								where dpp.param_name like 'mrot') /
+						get_days_month(in_month, in_year),2)
 				when 
 					extract(year from get_seniority(e.person_num)) > 0 
 						and extract(year from get_seniority(e.person_num)) <= 5
 				then trunc(get_sick_days(e.person_num, in_month, in_year) * 
 						(get_avg_earning(e.person_num, in_year) * 
-						(select dsr.rate from dic_sick_rate dsr where dsr.min_value = 0 and dsr.max_value = 5)),2)
+						(select dsr.rate 
+						from dic_sick_rate dsr 
+						where dsr.min_value = 0 and dsr.max_value = 5)),2)
 				when 
 					extract(year from get_seniority(e.person_num)) > 5 
 						and extract(year from get_seniority(e.person_num)) <= 8
 				then trunc(get_sick_days(e.person_num, in_month, in_year) * 
 						(get_avg_earning(e.person_num, in_year) * 
-						(select dsr.rate from dic_sick_rate dsr where dsr.min_value = 5 and dsr.max_value = 8)),2)
+						(select dsr.rate 
+						from dic_sick_rate dsr 
+						where dsr.min_value = 5 and dsr.max_value = 8)),2)
 				when 
 					extract(year from get_seniority(e.person_num)) > 8 
-				then trunc(get_sick_days(e.person_num, in_month, in_year) * 
+				then 
+					case 
+					when
+						trunc(get_sick_days(e.person_num, in_month, in_year) * 
 						(get_avg_earning(e.person_num, in_year) * 
-						(select dsr.rate from dic_sick_rate dsr where dsr.min_value >=8)),2)
+						(select dsr.rate from dic_sick_rate dsr where dsr.min_value >=8)),2) > 
+						get_sick_days(e.person_num, in_month, in_year) *	
+						(select dpp.value 
+							from dic_pay_params dpp 
+							where dpp.param_name like 'max_payment_100_per_day')
+					then 
+						get_sick_days(e.person_num, in_month, in_year) * 
+						(select dpp.value 
+							from dic_pay_params dpp 
+							where dpp.param_name like 'max_payment_100_per_day')
+					end
 				else 0
 			end as sick_pay
 	from employees e 
 	where e.person_num = in_person_num;
 	
 $$ language sql;
-
 
 
 	 

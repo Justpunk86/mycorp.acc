@@ -1,3 +1,5 @@
+drop function get_payroll_employee;
+
 create function get_payroll_employee(in_person_num text, 
 									in_month_start integer, in_year_start integer, 
 									in_month_end integer, in_year_end integer)
@@ -110,3 +112,8 @@ begin
 		v_total_sum_total_payments;
 end;
 $$ language plpgsql;
+
+
+select * from get_payroll_employee('mc-14',1,2023,1,2024);
+
+	

@@ -1,26 +1,3 @@
-/*select '1 year 10 month'::interval;
-select 8600000001::bigint;
-alter table employees alter column tin set data type bigint;
-alter table employees alter column leaving_date drop not null;
-alter table emp_salary_data alter column salary set data type Numeric(7,2);
-alter table emp_sick_data add constraint c_stop_sick_start_sick 
-check ( date_stop_sick > date_start_sick);
-alter table emp_piecework_data add constraint c_contract_date 
-check ( expiration_date > contract_date);
-
-select * from employees e;
-select * from dic_job_title djt ;
-select * from emp_jobs_data ejd;
-select * from emp_salary_data esd;
-
-alter table employees add column person_num text;
-alter table employees alter column person_num set not null;
-
-update employees
-set person_num = 'mc-'||emp_id;*/
-
-
-
 insert into dic_job_title(
 job_title
 )
@@ -76,7 +53,8 @@ emp_id,
 date_start_sick,
 date_stop_sick
 )
-values (14,to_date('10.12.2023','dd.mm.yyyy'),to_date('15.12.2023','dd.mm.yyyy'));
+values (14,to_date('10.12.2023','dd.mm.yyyy'),to_date('15.12.2023','dd.mm.yyyy')),
+(15,to_date('15.12.2023','dd.mm.yyyy'),to_date('20.12.2023','dd.mm.yyyy'));
 
 insert into emp_piecework_data(
 emp_id,
@@ -102,8 +80,7 @@ values('mrot',4611),
 ('tax_ru',0.13);
 
 insert into emp_jobs_before(emp_id,start_date,end_date,corp_name)
-values(14,'01.01.2021','01.09.2023','Coca-cola'),
-(14,'01.09.2023','01.12.2023','Woosh'),
+values (14,to_date('01.11.2022','dd.mm.yyyy'),to_date('31.12.2022','dd.mm.yyyy'),'Coca-cola'),
 (15,'01.01.2021','01.12.2022','Ozon'),
 (15,'01.01.2023','01.12.2023','X5'),
 (15,'01.01.2022','01.10.2023','Ozon'),

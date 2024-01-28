@@ -1,3 +1,5 @@
+drop function get_payroll_sheet;
+
 create function get_payroll_sheet(in_month integer, in_year integer)
 returns table(person_num text, bio text, job_title text, 
 			base_sal numeric, worked_days integer, sal_days integer,
@@ -64,3 +66,7 @@ as $$
 --	group by od.person_num;
 	
 $$ language sql;
+
+select * from get_payroll_sheet(12, 2023);
+
+	

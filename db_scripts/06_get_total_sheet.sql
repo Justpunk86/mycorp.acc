@@ -1,3 +1,11 @@
+select * from get_total_sheet();
+
+select * from employees e ;
+
+select get_days_month(12, 2022)
+
+drop function get_total_sheet;
+
 create function get_total_sheet()
 returns table(year_rep text, month_rep text, count_emps text,
 			  sum_salary numeric, sum_piece_payments numeric, sum_bonus numeric,
@@ -166,3 +174,7 @@ begin
 end;
 
 $$ language plpgsql;
+
+
+
+
