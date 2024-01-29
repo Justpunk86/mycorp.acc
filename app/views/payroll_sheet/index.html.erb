@@ -1,20 +1,119 @@
 
+<div class="container text-center">
+	<div class="row row-cols-7">
+			
+					<div class="col-1">
+						Личный номер
+					</div>
+					<div class="col-1">
+						ФИО
+					</div>
+					<div class="col-1">
+						Должность
+					</div>
+	
+				
+					<div class="col-4">
+						Начислено
+						<div class="row row-cols-4">
+							<div class="col">
+								кол-во отраб. дней
+							</div>
+							<div class="col">
+								зар. плата
+							</div>
+							<div class="col">
+								сдельные работы
+							</div>
+							<div class="col">
+								надбавки
+							</div>
+						</div>
+					</div>
+				
+			<div class="col-1">
+				Размер НДФЛ (13%)
+			</div>
 
-<% @payroll_sheet.each do |ps| %>
+			<div class="col-2">	
+				во время болезни
+				<div class="row row-cols-2">
+					<div class="col">
+						Кол-во дней
+					</div>
+					
+					<div class="col">
+						Начислено
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-1">
+					Итого к выплате</br>
+			</div>
+	</div>
+</div>
+
+<div class="container text-center">
+
+	<% @payroll_sheet.each do |ps| %>
 	<p>
-		<%= ps.person_num %><br>
-		<%= ps.bio %><br>
-		<%= ps.job_title %><br>
-		<%= ps.base_sal %><br>
 
-		<%= ps.worked_days %><br>
-		<%= ps.sal_days %><br>
-		<%= ps.piece_job %><br>
-		<%= ps.bonus %><br>
+	<div class="row row-cols-7">
+			
+					<div class="col-1">
+						<%= ps.person_num %><br>
+					</div>
+					<div class="col-1">
+						<%= ps.bio %><br>
+					</div>
+					<div class="col-1">
+						<%= ps.job_title %><br>
+					</div>
+	
+				
+					<div class="col-4">
+						<div class="row row-cols-4">
+							<div class="col">
+								<%= ps.worked_days %><br>
+							</div>
+							<div class="col">
+								<%= ps.sal_days %><br>
+							</div>
+							<div class="col">
+								<%= ps.piece_job %><br>
+									</div>
+							<div class="col">
+								<%= ps.bonus %><br>
+							</div>
+						</div>
+					</div>
+				
+			<div class="col-1">
+				<%= ps.tax %><br>
+			</div>
 
-		<%= ps.tax %><br>
-		<%= ps.sick_days %><br>
-		<%= ps.sick_payments %><br>
-		<%= ps.tot_payment %><br>
-	</p>
+			<div class="col-2">	
+				<div class="row row-cols-2">
+					<div class="col">
+						<%= ps.sick_days %><br>
+		
+					</div>
+					
+					<div class="col">
+						<%= ps.sick_payments %><br>
+		
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-1">
+					<%= ps.tot_payment %><br>
+			</div>
+	</div>
+</p>
 <% end %>
+</div>
+
+
+
