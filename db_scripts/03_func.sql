@@ -325,6 +325,7 @@ end;
 $$ language plpgsql;
 
 
+drop function get_sick_payment;
 
 create function get_sick_payment(in_person_num text, in_month integer, in_year integer)
 returns numeric
@@ -373,6 +374,10 @@ as $$
 						(select dpp.value 
 							from dic_pay_params dpp 
 							where dpp.param_name like 'max_payment_100_per_day')
+					else
+						trunc(get_sick_days(e.person_num, in_month, in_year) * 
+						(get_avg_earning(e.person_num, in_year) * 
+						(select dsr.rate from dic_sick_rate dsr where dsr.min_value >=8)),2)
 					end
 				else 0
 			end as sick_pay
