@@ -1,0 +1,20 @@
+
+
+<% @payroll_sheet.each do |ps| %>
+	<p>
+		<%= ps.person_num %><br>
+		<%= ps.bio %><br>
+		<%= ps.job_title %><br>
+		<%= ps.base_sal %><br>
+
+		<%= ps.worked_days %><br>
+		<%= ps.sal_days %><br>
+		<%= ps.piece_job %><br>
+		<%= ps.bonus %><br>
+
+		<%= ps.tax %><br>
+		<%= ps.sick_days %><br>
+		<%= ps.sick_payments %><br>
+		<%= ps.tot_payment %><br>
+	</p>
+<% end %>
