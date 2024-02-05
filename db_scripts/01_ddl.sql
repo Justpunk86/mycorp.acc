@@ -1,6 +1,6 @@
 create table employees(
 	emp_id					integer generated always as identity not null,
-	person_num				text not null default 'mc-'||emp_id,
+	person_num				text unique,
 	last_name				text not null,
 	first_name				text not null,
 	father_name 			text not null,
@@ -14,6 +14,24 @@ create table employees(
 	primary key(emp_id),
 	constraint uniq_passport_sn_passport_num unique(passport_sn, passport_num)	
 );
+
+create function gen_person_num()
+returns trigger
+as $$
+declare
+
+begin
+	execute format(
+		'update employees set person_num = $1 where emp_id = $2'
+	) using 'mc-'||new.emp_id, new.emp_id;
+	return new;
+end;
+$$ language plpgsql;
+
+create trigger upd_person_num
+after insert on employees
+for each row execute function gen_person_num();
+
 
 create table dic_job_title(
 	job_title_id 	integer generated always as identity not null,
@@ -31,6 +49,7 @@ create table emp_jobs_data (
 	foreign key(job_title_id) references dic_job_title(job_title_id)
 	
 );
+
 create table emp_salary_data(	
 	emp_id				integer not null,
 	salary_start_date	date not null,
@@ -39,7 +58,6 @@ create table emp_salary_data(
 	constraint uniq_emp_salary_data unique(emp_id,salary,salary_start_date),
 	foreign key(emp_id) references employees(emp_id)
 );
-
 
 create table emp_sick_data (
 	emp_id				integer not null,

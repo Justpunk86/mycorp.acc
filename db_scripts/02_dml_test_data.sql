@@ -7,7 +7,6 @@ values ('Начальник отдела'),
 ('Системный администратор');
 
 insert into employees(
-person_num,
 last_name, 
 first_name, 
 father_name,
@@ -20,12 +19,12 @@ onboarding_date,
 leaving_date, 
 insurance_start_date
 )
-values ((select 'mc-'||last_value + 1 from employees_emp_id_seq), 'Иванов', 'Иван', 'Иванович', 123456, 8600000001, 0001, 000001,
+values ('Иванов', 'Иван', 'Иванович', 123456, 8600000001, 0001, 000001,
 		 to_date('01.12.2023','dd.mm.yyyy'), null, 
 		to_date('01.01.2023','dd.mm.yyyy')),
-		((select 'mc-'||last_value  + 1 from employees_emp_id_seq), 'Сидоров', 'Сидор', 'Исидорович', 000002, 8600000002, 0002, 000002,
+		('Сидоров', 'Сидор', 'Исидорович', 000002, 8600000002, 0002, 000002,
 		 to_date('02.12.2022','dd.mm.yyyy'), null, to_date('02.01.2023','dd.mm.yyyy')),
-		((select 'mc-'||last_value + 1 from employees_emp_id_seq), 'Иванов', 'Иван', 'Иванович', 000003, 8600000003, 0003, 000003,
+		('Иванов', 'Иван', 'Иванович', 000003, 8600000003, 0003, 000003,
 		 to_date('03.12.2023','dd.mm.yyyy'), null, to_date('03.01.2023','dd.mm.yyyy'));
 
 insert into emp_jobs_data(
