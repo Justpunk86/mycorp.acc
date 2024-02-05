@@ -1,9 +1,60 @@
-here wil be employees
+<a href="/#"><-home</a>
 
-<% @emps.each do |e| %>
-	<p>
-		<%= e.emp_id %><br>
-		<%= e.last_name %><br>
-		
-	</p>
-<% end %>
+<div class="container">
+	<h1>employees</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Emp data</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<% @emps.each do |e| %>
+		<tr>
+				<td>
+					<%= get_rownum_emp %>
+				</td>
+				<td> 
+						<%= e.person_num %></br>
+						<%= e.last_name %> 
+						<%= e.first_name %> 
+						<%= e.father_name %><br>
+						
+						<div class="emps_index">
+						<%= form_for :employee, 
+									url: "#{emps_path}/#{e.emp_id}",
+									method: :delete,
+									data: {turbo: false} do |f| %>
+							
+							<%= f.submit 'delete' %>
+						<% end %>
+						</div>
+
+						<div class="emps_index">
+						<%= form_for :employee, 
+									url: "#{emps_path}/#{e.emp_id}/edit",
+									method: :get,
+									data: {turbo: false} do |f| %>
+							
+							<%= f.submit 'edit' %>
+						<% end %>
+						</div>
+
+						<div class="emps_index">
+						<%= form_for :employee, 
+									url: "#{emps_path}/#{e.emp_id}",
+									method: :get,
+									data: {turbo: false} do |f| %>
+							
+							<%= f.submit 'show' %>
+						<% end %>
+						</div>
+				</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
+

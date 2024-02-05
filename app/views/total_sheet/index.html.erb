@@ -1,0 +1,39 @@
+<a href="/#"><-home</a>
+<div class="container text-center">
+    <table class="table">
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2">#</th>
+				<th scope="col" rowspan="2">Год</th>
+				<th scope="col" rowspan="2">Месяц</th>
+				<th scope="col" rowspan="2">Кол-во сотрудников</th>
+				<th scope="col" colspan="3">Начислено</th>
+				<th scope="col" rowspan="2">Размер НДФЛ(13%)</th>
+				<th scope="col" rowspan="2">Начислено за больничный</th>
+				<th scope="col" rowspan="2">Итого к выплате</th>
+			</tr>
+			<tr>
+				<th scope="col">зар.плата</th>
+				<th scope="col">сдельные работы</th>
+				<th scope="col">надбавки</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @total_sheet.each do |ts| %>
+			<tr>
+				<td> <%= get_rownum_psh %> </td>
+				<td> <%= ts.year_rep %>	</td>
+				<td> <%= ts.month_rep %> </td>
+				<td> <%= ts.count_emps %> </td>
+				<td> <%= ts.sum_salary %> </td>
+				<td> <%= ts.sum_piece_payments %> </td>
+				<td> <%= ts.sum_bonus %> </td>
+				<td> <%= ts.sum_tax %> </td>
+				<td> <%= ts.sum_sick_payments %> </td>
+				<td> <%= ts.sum_total_payments %> </td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>

@@ -1,0 +1,30 @@
+.conatiner.h1 {
+	text-align: center;
+}
+
+.container {
+	text-align: left;
+}
+
+.inner_left_container {
+	text-align: right;
+	float: left;
+	margin: 10px;
+}
+
+.inner_right_container {
+	text-align: right;
+	float: left;
+	margin: 10px;
+}
+
+.bottom_container {
+	margin-top: 10px;
+}
+
+.emps_index {
+	float: left;
+	padding: 2px;
+	display: block;
+	position: relative;
+}

@@ -1,1 +1,71 @@
-<h1>home</h1>
+<h1>MyCorp.Accaunted</h1>
+
+<div class="container">
+  <nav class="nav">
+    <a class="nav-link active" aria-current="page" href="#">Home</a>
+
+    <div class="inner_left_container">
+
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emps_path}/new" %>>New emp</a>
+        create a new employee
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= emps_path %>>Employees</a>
+        read emps list
+      </div>
+      
+      <div class="container">
+        <a class="nav-link" href=<%= "#{dic_job_title_path}" %>>dic job title</a>
+        dictionary job titles
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{dic_pay_params_path}" %>>dic pay params</a>
+        dictionary par params
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{dic_sick_rate_path}" %>>dic sick rate</a>
+        dictionary sick rate
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emp_jobs_path}" %>>job data</a>
+        enter and read job data
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emp_salary_data_path}" %>>salary data</a>
+        enter and read salary data
+      </div>
+    </div>
+
+    <div class="inner_right_container">
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emp_sick_data_path}" %>>sick data</a>
+        enter and read sick data
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emp_piecework_data_path}" %>>piecework data</a>
+        enter and read piecework data
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emp_bonus_data_path}" %>>bonus data</a>
+        enter and read bonus data
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= "#{emp_jobs_before_path}" %>>jobs before</a>
+        enter and read jobs before
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= payroll_sheet_path %>>payroll sheet</a>
+        get report payroll sheet
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= payroll_employee_path %>>payroll employee</a>
+        get report payroll employee
+      </div>
+      <div class="container">
+        <a class="nav-link" href=<%= total_sheet_path %>>total sheet</a>
+        get report total sheet
+      </div>
+    </div>
+  </nav>
+</div>

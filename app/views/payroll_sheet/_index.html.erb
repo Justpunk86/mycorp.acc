@@ -1,0 +1,45 @@
+<div class="container text-center">
+    <table class="table">
+		<thead>
+			<tr>
+				<th scope="col" rowspan="2">#</th>
+				<th scope="col" rowspan="2">Личный номер</th>
+				<th scope="col" rowspan="2">ФИО</th>
+				<th scope="col" rowspan="2">Должность</th>
+				<th scope="col" colspan="4">Начислено</th>
+				<th scope="col" rowspan="2">Размер НДФЛ (13%)</th>
+				<th scope="col" colspan="2">во время болезни</th>
+				<th scope="col" rowspan="2">Итого к выплате</th>
+			</tr>
+			<tr>
+				<th scope="col">кол-во отраб. дней</th>
+				<th scope="col">зар. плата</th>
+				<th scope="col">сдельные работы</th>
+				<th scope="col">надбавки</th>
+				<th scope="col">Кол-во дней</th>
+				<th scope="col">Начислено</th>
+			</tr>
+			
+		</thead>
+		<tbody>
+			<% @payroll_sheet.each do |ps| %>
+			<tr>
+				<td> <%= get_rownum_psh %>	</td>
+				<td> <%= ps.person_num %> </td>
+				<td> <%= ps.full_name %> </td>
+				<td> <%= ps.job_title %> </td>
+				<td> <%= ps.worked_days %> </td>
+				<td> <%= ps.sal_days %> </td>
+				<td> <%= ps.piece_job %> </td>
+				<td> <%= ps.bonus %> </td>
+				<td> <%= ps.tax %> </td>
+				<td> <%= ps.sick_days %> </td>
+				<td> <%= ps.sick_payments %> </td>
+				<td> <%= ps.tot_payment %> </td>
+
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>

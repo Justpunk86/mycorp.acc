@@ -1,0 +1,34 @@
+
+
+<a href="/#"><-home</a>
+<div class="container text-center">
+    <table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Личный номер</th>
+				<th scope="col">Дата выплаты</th>
+				<th scope="col">Сумма</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @ebd.each do |j|  %>
+			<tr>
+				<td> <%= get_rownum_psh %> </td>
+				<td> <%= j.emp_id %> </td>
+				<td> <%= j.payment_date %> </td>
+				<td> <%= j.amount %> </td>
+			</tr>
+			<% end %> 
+		</tbody>
+	</table>
+
+</div>
+
+<%= form_for :emp_jobs_data do |f| %>
+	<%= f.label :emp_id %>
+	<%= f.text_field :emp_id %></br>
+
+	<%= f.label :job_title_id %>
+	<%= f.text_field :job_title_id %>
+<% end %>

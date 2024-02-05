@@ -1,0 +1,2 @@
+module DicJobTitleHelper
+end

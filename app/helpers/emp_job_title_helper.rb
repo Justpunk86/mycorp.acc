@@ -1,0 +1,2 @@
+module EmpJobTitleHelper
+end

@@ -1,0 +1,43 @@
+
+
+
+<a href="/#"><-home</a>
+<div class="container text-center">
+    <table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Личный номер</th>
+				<th scope="col">Дата назначения</th>
+				<th scope="col">Должность</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @ejd.each do |j|  %>
+			<tr>
+				<td> <%= get_rownum_psh %> </td>
+				<td> <%= j.person_num %> </td>
+				<td> <%= j.job_start_date %> </td>
+				<td> <%= j.job_title %> </td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= form_for :emp_jobs_data, method: :post, url: "#{emp_jobs_path}" do |f| %>
+		<%= f.label :person_num %>
+		<%= f.text_field :person_num %>
+
+		<%= f.label :job_start_date %>
+		<%= f.text_field :job_start_date %>
+
+		<%= f.label :job_title_id %>
+		<%= f.select :job_title_id, @dic_jt
+
+		%>
+
+		<%= f.submit 'Save' %>
+	<% end %>
+
+</div>
+

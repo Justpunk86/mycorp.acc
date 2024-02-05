@@ -1,0 +1,3 @@
+class EmpPieceworkData < ApplicationRecord
+  
+end

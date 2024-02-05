@@ -1,0 +1,21 @@
+
+<a href="/#"><-home</a>
+<div class="container text-center">
+    <table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Должность</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @dic_job_title.each do |t| %>
+			<tr>
+				<td> <%= get_rownum_psh %> </td>
+				<td> <%= t.job_title %>	</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>

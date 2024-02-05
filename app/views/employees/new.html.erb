@@ -1,5 +1,48 @@
-<h1>new employee</h1>
+<a href="/#"><-home</a> 
 
-<%= form_for :employee do |f| %>
-	<p> <%= f.text_field :emp_id %> </p>
-<% end %>
+<div class="container">
+	<h1>new employee</h1>
+	<%= form_for :employee, url: '/emps', method: :post, data: {turbo: true} do |f| %>
+
+		<div class="inner_right_container">
+			<p> 
+				<%= f.label :last_name %><br>
+				<%= f.text_field :last_name %> </p>
+			<p> 
+				<%= f.label :first_name %><br>
+				<%= f.text_field :first_name %> </p>
+			<p> 
+				<%= f.label :father_name %><br>
+				<%= f.text_field :father_name %> </p>
+			<p> 
+				<%= f.label :snils %><br>
+				<%= f.text_field :snils %> </p>
+			<p> 
+				<%= f.label :tin %><br>
+				<%= f.text_field :tin %> </p>
+		</div>
+		<div class="inner_right_container">
+			<p> 
+				<%= f.label :passport_sn %><br>
+				<%= f.text_field :passport_sn %> </p>
+			<p> 
+				<%= f.label :passport_num %><br>
+				<%= f.text_field :passport_num %> </p>
+			<p> 
+				<%= f.label :onboarding_date %><br>
+				<%= f.text_field :onboarding_date %> </p>
+			<p> 
+				<%= f.label :leaving_date %><br>
+				<%= f.text_field :leaving_date %> </p>
+			<p>	
+			<p> 
+				<%= f.label :insurance_start_date %><br>
+				<%= f.text_field :insurance_start_date %>
+			</p>
+			<div class="bottom_container">
+				<p> <%= f.submit 'Create employee' %> </p>
+			</div>
+		</div>
+		
+	<% end %>
+</div>

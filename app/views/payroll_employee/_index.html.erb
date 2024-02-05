@@ -1,0 +1,30 @@
+
+
+<div class="container text-center">
+    <table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Год</th>
+				<th scope="col">Месяц</th>
+				<th scope="col">Начислено(зар.плата+сдельные работы+надбавки)</th>
+				<th scope="col">Размер НДФЛ(13%)</th>
+				<th scope="col">Итого к выплате</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @payroll_emp.each do |pe| %>
+			<tr>
+				<td> <%= pe.year_rep %>	</td>
+				<td> <%= pe.month_rep %> </td>
+				<td> <%= pe.sum_payment %> </td>
+				<td> <%= pe.tax %> </td>
+				<td> <%= pe.sick_payment %> </td>
+				<td> <%= pe.total_payment %> </td>
+				
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+</div>

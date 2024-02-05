@@ -1,0 +1,45 @@
+<a href="/#"><-home</a>
+
+<div class="container">
+	<h2>payroll employee</h2>
+	
+	<%= form_for :payroll_employee, url: "#{payroll_employee_path}", method: :get do |f| %>
+
+		<div class="container"> 
+			<p>
+				<label>person_num</label>
+				<input type="text" name="person_num", value=<%= @in_person_num %> >  
+			</p>
+		</div>
+
+		<div class="container"> 
+			<p>
+				<label>month start</label>
+				<input type="text" name="month_start", value=<%= @in_month_start %> >  
+			
+				<label>year start</label>
+				<input type="text" name="year_start", value=<%= @in_year_start %> >  
+			</p>
+		</div>
+
+		<div class="container"> 
+			<p>
+				<label>month end</label>
+				<input type="text" name="month_end", value=<%= @in_month_end %> >  
+
+				<label>year end</label>
+				<input type="text" name="year_end", value=<%= @in_year_end %> >  
+			</p>
+		</div>
+
+		<div class="inner_left_container"> 
+			<%= f.submit 'Get report' %>
+		</div>
+			
+    <% if @payroll_emp != nil %>
+    	<%= render 'index' %>
+    <% end %>
+		
+	<% end %>
+</div>
+	
