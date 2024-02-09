@@ -1,5 +1,6 @@
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 <div class="container text-center">
+	<h1>итоговая ведомость</h1>
     <table class="table">
 		<thead>
 			<tr>
@@ -33,6 +34,7 @@
 				<td> <%= ts.sum_total_payments %> </td>
 			</tr>
 			<% end %>
+			<% reset_row_num %>
 		</tbody>
 	</table>
 

@@ -1,34 +1,69 @@
 
 
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 <div class="container text-center">
+	<h1>премии</h1>
     <table class="table">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Личный номер</th>
+				<th scope="col">№ Приказа</th>
 				<th scope="col">Дата выплаты</th>
 				<th scope="col">Сумма</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @ebd.each do |j|  %>
 			<tr>
 				<td> <%= get_rownum_psh %> </td>
-				<td> <%= j.emp_id %> </td>
+				<td> <%= j.person_num %> </td>
+				<td> <%= j.order_num %> </td>
 				<td> <%= j.payment_date %> </td>
 				<td> <%= j.amount %> </td>
+				<td> <div class="emps_index">
+						<%= form_for :emp_bonus_data, 
+							url: "#{emp_bonus_data_path}/#{j.emp_id}&#{j.order_num}",
+							method: :delete,
+							data: {turbo: false} do |f| %>
+						
+						<%= f.submit 'удалить' %>
+					<% end %>
+					</div>
+				</td>
 			</tr>
 			<% end %> 
+			<% reset_row_num %>
+
+			<tr>
+				<%= form_for :emp_bonus_data, method: :post, url: "#{emp_bonus_data_path}" do |f| %>
+					<td>
+						
+					</td>
+					<td>				
+						<%= f.select :person_num, Employee.order(:person_num).map {|jt| jt.person_num } %>
+					</td>
+
+					<td>
+						<%= f.text_field :order_num %>
+					</td>
+					
+					<td>
+						<%= f.date_select :payment_date %>
+					</td>
+
+					<td>
+						<%= f.text_field :amount %>
+					</td>
+					
+
+					<td><%= f.submit 'сохранить' %></td>
+					
+				<% end %>
+			</tr>
 		</tbody>
 	</table>
 
 </div>
 
-<%= form_for :emp_jobs_data do |f| %>
-	<%= f.label :emp_id %>
-	<%= f.text_field :emp_id %></br>
-
-	<%= f.label :job_title_id %>
-	<%= f.text_field :job_title_id %>
-<% end %>

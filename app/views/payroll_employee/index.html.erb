@@ -1,39 +1,69 @@
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 
 <div class="container">
-	<h2>payroll employee</h2>
+	<h2>расчётный лист выплат сотруднику</h2>
 	
 	<%= form_for :payroll_employee, url: "#{payroll_employee_path}", method: :get do |f| %>
 
 		<div class="container"> 
 			<p>
-				<label>person_num</label>
-				<input type="text" name="person_num", value=<%= @in_person_num %> >  
+				
+				<label for="person_num">номер сотрудника</label>
+				<select name="person_num", id="person_num" >
+					<option ><%= @in_person_num %></option>
+					<% Employee.order(:person_num).map do |jt|%>
+						<option><%= jt.person_num.to_s %></option>
+					<% end %>
+				</select>
 			</p>
 		</div>
 
 		<div class="container"> 
 			<p>
-				<label>month start</label>
-				<input type="text" name="month_start", value=<%= @in_month_start %> >  
-			
-				<label>year start</label>
-				<input type="text" name="year_start", value=<%= @in_year_start %> >  
+
+
+				<label for="month_start">начальный месяц</label>
+				<select name="month_start", id="month_start" >
+					<option ><%= @in_month_start %></option>
+					<% 1.upto(12).map do |m|%>
+						<option><%= m.to_s %></option>
+					<% end %>
+				</select>
+
+				<label for="year_start">начальный год</label>
+				<select name="year_start", id="year_start" >
+					<option ><%= @in_year_start %></option>
+					<% 2021.upto(2024).map do |y|%>
+						<option><%= y.to_s %></option>
+					<% end %>
+				</select>
 			</p>
 		</div>
 
 		<div class="container"> 
 			<p>
-				<label>month end</label>
-				<input type="text" name="month_end", value=<%= @in_month_end %> >  
 
-				<label>year end</label>
-				<input type="text" name="year_end", value=<%= @in_year_end %> >  
+
+				<label for="month_end">конечный месяц</label>
+				<select name="month_end", id="month_end" >
+					<option ><%= @in_month_end %></option>
+					<% 1.upto(12).map do |m|%>
+						<option><%= m.to_s %></option>
+					<% end %>
+				</select>
+
+				<label for="year_end">конечный год</label>
+				<select name="year_end", id="year_end">
+					<option ><%= @in_year_end %></option>
+					<% 2021.upto(2024).map do |y|%>
+						<option><%= y.to_s %></option>
+					<% end %>
+				</select>
 			</p>
 		</div>
 
 		<div class="inner_left_container"> 
-			<%= f.submit 'Get report' %>
+			<%= f.submit 'получить отчёт' %>
 		</div>
 			
     <% if @payroll_emp != nil %>

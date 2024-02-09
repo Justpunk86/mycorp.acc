@@ -1,18 +1,12 @@
 module PayrollSheetHelper
     @@count = 0
 
-  
-  
   def get_rownum_psh
-    count_emps = PayrollSheet.group(:emp_id).count
+    @@count = @@count + 1
+  end
 
-
-    if @@count < count_emps.count
-    then
-      @@count = @@count + 1
-    else
-      @@count = 1
-    end
+  def reset_row_num
+    @@count = 0
   end
 
 end

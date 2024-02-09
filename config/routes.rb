@@ -19,12 +19,30 @@ Rails.application.routes.draw do
   get '/dic_pay_params' => 'dic_pay_params#index'
   get '/dic_sick_rate' => 'dic_sick_rate#index'
 
-  get '/emp_jobs' => 'emp_jobs_data#index'
+  get '/emp_jobs_data' => 'emp_jobs_data#index'
+  post '/emp_jobs_data' => 'emp_jobs_data#create'
+  delete '/emp_jobs_data/:emp_id&:job_title_id' => 'emp_jobs_data#destroy'
+
   get '/emp_salary_data' => 'emp_salary_data#index'
+  post '/emp_salary_data' => 'emp_salary_data#create'
+  delete '/emp_salary_data/:emp_id&:salary_start_date' => 'emp_salary_data#destroy'
+
   get '/emp_sick_data' => 'emp_sick_data#index'
+  post '/emp_sick_data' => 'emp_sick_data#create'
+  delete '/emp_sick_data/:emp_id' => 'emp_sick_data#destroy'
+
   get '/emp_piecework_data' => 'emp_piecework_data#index'
+  post '/emp_piecework_data' => 'emp_piecework_data#create'
+  delete '/emp_piecework_data/:emp_id' => 'emp_piecework_data#destroy'
+
+
   get '/emp_bonus_data' => 'emp_bonus_data#index'
+  post '/emp_bonus_data' => 'emp_bonus_data#create'
+  delete '/emp_bonus_data/:emp_id&:order_num' => 'emp_bonus_data#destroy'
+
   get '/emp_jobs_before' => 'emp_jobs_before#index'
+  post '/emp_jobs_before' => 'emp_jobs_before#create'
+  delete '/emp_jobs_before/:emp_id&:start_date&:end_date' => 'emp_jobs_before#destroy'
 
 
   #resources :employees

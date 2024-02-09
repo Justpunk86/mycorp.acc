@@ -1,7 +1,12 @@
 class PayrollSheetController < ApplicationController
-  
+  @@count = 0
+  def get_num
+    @@count = @@count + 1
+  end
 
   def index
+
+
     @year = nil
     @month = nil
     @payroll_sheet = nil

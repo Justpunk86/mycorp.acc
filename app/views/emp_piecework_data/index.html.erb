@@ -1,7 +1,8 @@
 
 
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 <div class="container text-center">
+	<h1>сдельные работы</h1>
     <table class="table">
 		<thead>
 			<tr>
@@ -12,30 +13,62 @@
 				<th scope="col">Срок исполнения</th>
 				<th scope="col">Сумма</th>
 				<th scope="col">Дата оплаты</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @epd.each do |j|  %>
 			<tr>
 				<td> <%= get_rownum_psh %> </td>
-				<td> <%= j.emp_id %> </td>
+				<td> <%= j.person_num %> </td>
 				<td> <%= j.contract_number %> </td>
 				<td> <%= j.contract_date %> </td>
 				<td> <%= j.expiration_date %> </td>
 				<td> <%= j.contract_amount %> </td>
 				<td> <%= j.payment_date %> </td>
-
+				<td> <div class="emps_index">
+						<%= form_for :emp_piecework_data, 
+							url: "#{emp_piecework_data_path}/#{j.emp_id}",
+							method: :delete,
+							data: {turbo: false} do |f| %>
+						
+						<%= f.submit 'удалить' %>
+					<% end %>
+					</div>
+				</td>
 			</tr>
 			<% end %> 
+			<% reset_row_num %>
+		
+			<tr>
+				<%= form_for :emp_piecework_data, method: :post, url: "#{emp_piecework_data_path}" do |f| %>
+					<td>
+						
+					</td>
+					<td>				
+						<%= f.select :person_num, Employee.order(:person_num).map {|jt| jt.person_num } %>
+					</td>
+					<td>
+						<%= f.text_field :contract_number %>
+					</td>
+					<td>
+						<%= f.date_select :contract_date %>
+					</td>
+					<td>
+						<%= f.date_select :expiration_date %>
+					</td>
+					<td>
+						<%= f.text_field :contract_amount %>
+					</td>
+					<td>
+						<%= f.date_select :payment_date %>
+					</td>
+
+					<td><%= f.submit 'сохранить' %></td>
+					
+				<% end %>
+			</tr>
 		</tbody>
 	</table>
 
 </div>
-
-<%= form_for :emp_jobs_data do |f| %>
-	<%= f.label :emp_id %>
-	<%= f.text_field :emp_id %></br>
-
-	<%= f.label :job_title_id %>
-	<%= f.text_field :job_title_id %>
-<% end %>

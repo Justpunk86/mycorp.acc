@@ -1,19 +1,31 @@
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 
 <div class="container">
-	<h2>payroll sheet</h2>
+	<h2>общий расчётный лист выплат</h2>
 	
 	<%= form_for :payroll_sheet, url: "#{payroll_sheet_path}", method: :get do |f| %>
+
 		<div class="emps_index"> 
-			<label>month</label>
-			<input type="text" name="month", value=<%= @month %> >  
+			<label for="month">месяц</label>
+			<select name="month", id="month" >
+				<option value=<%= @month %>><%= @month %></option>
+				<% 1.upto(12).map do |m|%>
+					<option><%= m.to_s %></option>
+				<% end %>
+			</select>
+		</div>
+
+		<div class="emps_index"> 
+			<label for="year">год</label>
+			<select name="year", id="year" >
+				<option value=<%= @year %>><%= @year %></option>
+				<% 1900.upto(2024).map do |y|%>
+					<option><%= y.to_s %></option>
+				<% end %>
+			</select>
 		</div>
 		<div class="emps_index"> 
-			<label>year</label>
-			<input type="text" name="year", value=<%= @year %> >  
-		</div>
-		<div class="emps_index"> 
-			<%= f.submit 'Get report' %>
+			<%= f.submit 'получить отчёт' %>
 		</div>
 			
     <% if @payroll_sheet != nil %>

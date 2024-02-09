@@ -1,8 +1,7 @@
 
-
-
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 <div class="container text-center">
+	<h1>назначение должности</h1>
     <table class="table">
 		<thead>
 			<tr>
@@ -10,34 +9,63 @@
 				<th scope="col">Личный номер</th>
 				<th scope="col">Дата назначения</th>
 				<th scope="col">Должность</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @ejd.each do |j|  %>
 			<tr>
-				<td> <%= get_rownum_psh %> </td>
-				<td> <%= j.person_num %> </td>
+				<td> <%= get_rownum_psh %> 
+					
+				</td>
+				<td> <%= j.person_num %> 
+					
+				</td>
 				<td> <%= j.job_start_date %> </td>
 				<td> <%= j.job_title %> </td>
+				<td> <div class="emps_index">
+						<%= form_for :emp_jobs_data, 
+							url: "#{emp_jobs_data_path}/#{j.emp_id}&#{j.job_title_id}",
+							method: :delete,
+							data: {turbo: false} do |f| %>
+						
+						<%= f.submit 'удалить' %>
+					<% end %>
+					</div>
+				</td>
 			</tr>
 			<% end %>
+			<% reset_row_num %>
+			<tr>
+				
+				<%= form_for :emp_jobs_data, method: :post, url: "#{emp_jobs_data_path}" do |f| %>
+					<td>
+						
+					</td>
+					<td>				
+						<%= f.select :person_num, Employee.order(:person_num).map {|jt| jt.person_num } %>
+					</td>
+					<td>
+						<%= f.date_select :job_start_date %>
+					</td>
+					<td>
+						<%= f.select :job_title, DicJobTitle.order(:job_title).map {|jt| jt.job_title } %>
+						
+					</td>
+					<td><%= f.submit 'сохранить' %></td>
+					
+				<% end %>
+				
+				
+				
+				
+				
+			</tr>
 		</tbody>
 	</table>
 
-	<%= form_for :emp_jobs_data, method: :post, url: "#{emp_jobs_path}" do |f| %>
-		<%= f.label :person_num %>
-		<%= f.text_field :person_num %>
+	
 
-		<%= f.label :job_start_date %>
-		<%= f.text_field :job_start_date %>
-
-		<%= f.label :job_title_id %>
-		<%= f.select :job_title_id, @dic_jt
-
-		%>
-
-		<%= f.submit 'Save' %>
-	<% end %>
 
 </div>
 

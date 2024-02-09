@@ -17,6 +17,7 @@ class EmployeesController < ApplicationController
     else
       render action: 'new'
     end
+    redirect_to emps_path
   end
 
   def show
@@ -35,6 +36,7 @@ class EmployeesController < ApplicationController
     else
       render action: 'edit'
     end
+    
   end
 
   def destroy

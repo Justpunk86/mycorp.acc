@@ -1,12 +1,12 @@
-<a href="/#"><-home</a>
+<a href="/#">на главную</a>
 
 <div class="container">
-	<h1>employees</h1>
+	<h1>сотрудники</h1>
 <table class="table">
 	<thead>
 		<tr>
 			<th scope="col">#</th>
-			<th scope="col">Emp data</th>
+			<th scope="col">данные сотрудника</th>
 			
 		</tr>
 	</thead>
@@ -14,13 +14,14 @@
 		<% @emps.each do |e| %>
 		<tr>
 				<td>
-					<%= get_rownum_emp %>
+					<%= get_rownum_psh %>
 				</td>
 				<td> 
 						<%= e.person_num %></br>
 						<%= e.last_name %> 
 						<%= e.first_name %> 
 						<%= e.father_name %><br>
+						<%= e.onboarding_date %><br>
 						
 						<div class="emps_index">
 						<%= form_for :employee, 
@@ -54,6 +55,7 @@
 				</td>
 		</tr>
 		<% end %>
+		<% reset_row_num %>
 	</tbody>
 </table>
 </div>
