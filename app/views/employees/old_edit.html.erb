@@ -1,0 +1,49 @@
+<a href="/#">на главную</a>
+
+<div class="container">
+	<h2>
+		<%= @emp.person_num %></br> 	
+	</h2>
+	<%= form_for :employee, url: "#{emps_path}/#{@emp.emp_id}", method: :put do |f| %>
+
+	<div class="inner_left_container">
+		
+		<%= f.label :last_name %>
+		<%= f.text_field :last_name, value: @emp.last_name %></br>
+		<%= f.label :first_name %>
+		<%= f.text_field :first_name, value: @emp.first_name %></br>
+		<%= f.label :father_name %>
+		<%= f.text_field :father_name, value: @emp.father_name %></br>
+		<%= f.label :snils %>
+		<%= f.text_field :snils, value: @emp.snils %></br>
+		<%= f.label :tin %>
+		<%= f.text_field :tin, value: @emp.tin %></br>
+	</div>
+	<div class="inner_right_container">
+		
+		<%= f.label :passport_sn %>
+		<%= f.text_field :passport_sn, value: @emp.passport_sn %></br>
+		<%= f.label :passport_num %>
+		<%= f.text_field :passport_num, value: @emp.passport_num %></br>
+		<%= f.label :onboarding_date %>
+		<%= f.text_field :onboarding_date, value: @emp.onboarding_date %></br>
+		<%= f.label :leaving_date %>
+		<%= f.text_field :leaving_date, value: @emp.leaving_date %></br>
+		<%= f.label :insurance_start_date %>
+		<%= f.text_field :insurance_start_date, value: @emp.insurance_start_date %></br>
+
+	</div>
+		
+		<div class="inner_right_container">
+		
+		
+			<%= f.submit 'Save' %>
+		
+		</div>
+	
+
+	<% end %>
+</div>
+				
+				
+	

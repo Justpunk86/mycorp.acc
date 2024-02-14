@@ -1,48 +1,86 @@
+
+
 <a href="/#">на главную</a> 
 
 <div class="container">
 	<h1>новый сотрудник</h1>
-	<%= form_for :employee, url: '/emps', method: :post, data: {turbo: true} do |f| %>
 
-		<div class="inner_right_container">
-			<p> 
-				<%= f.label :Фамилия %><br>
-				<%= f.text_field :last_name %> </p>
-			<p> 
-				<%= f.label :Имя %><br>
+
+	
+	<%= form_with id: 'form_new_emp', model: @new_emp, url: emps_path, method: :post, data: {turbo: false} do |f| %>
+
+		<div class="inner_left_container">
+			
+				
+			<%= f.label :Фамилия %>
+
+				<p id="attr_last_name" class="emp_error">
+					<%= @new_emp.errors[:last_name].first %>
+					<%= f.text_field :last_name %> 
+				</p>
+				
+			<%= f.label :Имя %>
+			
+			<p class="emp_error">
+				<%= @new_emp.errors[:first_name].first %>
 				<%= f.text_field :first_name %> </p>
-			<p> 
-				<%= f.label :Отчество %><br>
+			
+			<%= f.label :Отчество %>
+
+			<p class="emp_error">
+				<%= @new_emp.errors[:father_name].first %>
 				<%= f.text_field :father_name %> </p>
-			<p> 
-				<%= f.label :СНИЛС %><br>
+
+			<%= f.label :СНИЛС %>
+			
+			<p class="emp_error">
+				<%= @new_emp.errors[:snils].first %>
 				<%= f.text_field :snils %> </p>
-			<p> 
-				<%= f.label :ИНН %><br>
+			
+				
+			<%= f.label :ИНН %>
+
+			<p class="emp_error">	
+				<%= @new_emp.errors[:tin].first %>
 				<%= f.text_field :tin %> </p>
+
 		</div>
-		<div class="inner_right_container">
-			<p> 
-				<%= f.label "Серия паспорта" %><br>
+
+		<div class="inner_left_container">
+
+			<%= f.label "Серия паспорта" %><br>
+			<p class="emp_error">	 
+				<%= @new_emp.errors[:passport_sn].first %>
 				<%= f.text_field :passport_sn %> </p>
-			<p> 
-				<%= f.label "Номер паспорта" %><br>
+				
+			<%= f.label "Номер паспорта" %><br>
+			<p class="emp_error">	 
+				<%= @new_emp.errors[:passport_num].first %>
 				<%= f.text_field :passport_num %> </p>
-			<p> 
+
 				<%= f.label "Дата приёма" %><br>
+			<p class="emp_error">	 
+				<%= @new_emp.errors[:onboarding_date].first %>
 				<%= f.text_field :onboarding_date %> </p>
-			<p> 
-				<%= f.label "Дата увольнения" %><br>
+			
+			<%= f.label "Дата увольнения" %><br>
+			<p class="emp_error">	 
+				<%= @new_emp.errors[:leaving_date].first %>
 				<%= f.text_field :leaving_date %> </p>
-			<p>	
-			<p> 
-				<%= f.label "Дата начала трудового стажа" %><br>
+			
+			<%= f.label "Дата начала трудового стажа" %>
+			<p class="emp_error">	
+				<%= @new_emp.errors[:insurance_start_date].first %>
 				<%= f.text_field :insurance_start_date %>
 			</p>
-			<div class="bottom_container">
-				<p> <%= f.submit 'Создать сотрудника' %> </p>
+
+			<div class="inner_right_container">
+				<p> <%= f.submit 'Создать сотрудника', id: 'save_new_emp' %> </p>
 			</div>
+
 		</div>
-		
+
 	<% end %>
 </div>
+
+

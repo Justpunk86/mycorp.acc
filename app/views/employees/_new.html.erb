@@ -1,0 +1,9 @@
+		<div class="bottom_container">
+			<% if @new_emp %>
+				<p>
+					<% @new_emp.errors.full_messages.each do |e| %>
+						<%= e %></br>
+					<% end %>
+				</p>
+			<% end %>
+		</div>

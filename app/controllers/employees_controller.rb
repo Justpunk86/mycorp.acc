@@ -6,18 +6,22 @@ class EmployeesController < ApplicationController
   end
 
   def new
-    
+    @new_emp = Employee.new
   end
 
   def create
     @new_emp = Employee.new(emp_params)
-    
+
+  
     if @new_emp.valid?
       @new_emp.save
+      redirect_to "#{emps_path}/new"
     else
-      render action: 'new'
+       render action: 'new'
+      #render @new_emp
+      
     end
-    redirect_to emps_path
+    
   end
 
   def show

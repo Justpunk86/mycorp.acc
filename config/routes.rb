@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   get '/' => 'home#index'
   
   get '/emps' => 'employees#index'
   get '/emps/new' => 'employees#new'
+  #post '/emps/new' => 'employees#create'
   post '/emps' => 'employees#create'
   get '/emps/:id' => 'employees#show'
   delete '/emps/:id' => 'employees#destroy'
