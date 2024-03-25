@@ -1,29 +1,31 @@
 
-var form_new_emp;
-var input_id;
-var elem;
+
+var chk_leaving_date;
+var int_leaving_date;
 
 window.onload = function() {
 	
 }
 
-form_new_emp = document.getElementById("form_new_emp");
-input_id = document.getElementById("employee_last_name");
-elem = document.getElementById("attr_last_name");
 
-function change_color() {
+
+int_leaving_date = document.getElementById("employee_leaving_date");
+chk_leaving_date = document.getElementById("chk_ld");
+
+function change_input() {
+	if (chk_leaving_date.checked == true) {
 	
-	 // let p = document.createElement('p');
-	 // p.innerHTML = "error";
-	 // document.body.append(p);
-	
-	 if (input_id.value == "")
-	{
+		int_leaving_date.disabled = false;
+	}
+	else {
+		int_leaving_date.value = null;
+		int_leaving_date.disabled = true;
 		
 	}
-
 }
 
-form_new_emp.addEventListener("submit",change_color);
+chk_leaving_date.addEventListener("click",change_input);
 
- 
+
+
+

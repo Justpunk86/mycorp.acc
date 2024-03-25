@@ -24,7 +24,7 @@
 						<%= e.onboarding_date %><br>
 						
 						<div class="emps_index">
-						<%= form_for :employee, 
+							<%= form_for :employee, 
 									url: "#{emps_path}/#{e.emp_id}",
 									method: :delete,
 									data: {turbo: false} do |f| %>
@@ -34,7 +34,7 @@
 						</div>
 
 						<div class="emps_index">
-						<%= form_for :employee, 
+							<%= form_for :employee, 
 									url: "#{emps_path}/#{e.emp_id}/edit",
 									method: :get,
 									data: {turbo: false} do |f| %>
@@ -44,7 +44,7 @@
 						</div>
 
 						<div class="emps_index">
-						<%= form_for :employee, 
+							<%= form_for :employee, 
 									url: "#{emps_path}/#{e.emp_id}",
 									method: :get,
 									data: {turbo: false} do |f| %>

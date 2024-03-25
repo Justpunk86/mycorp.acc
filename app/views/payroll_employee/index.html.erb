@@ -33,7 +33,7 @@
 				<label for="year_start">начальный год</label>
 				<select name="year_start", id="year_start" >
 					<option ><%= @in_year_start %></option>
-					<% 2021.upto(2024).map do |y|%>
+					<% 2014.upto(2024).map do |y|%>
 						<option><%= y.to_s %></option>
 					<% end %>
 				</select>
@@ -55,7 +55,7 @@
 				<label for="year_end">конечный год</label>
 				<select name="year_end", id="year_end">
 					<option ><%= @in_year_end %></option>
-					<% 2021.upto(2024).map do |y|%>
+					<% 2014.upto(2024).map do |y|%>
 						<option><%= y.to_s %></option>
 					<% end %>
 				</select>

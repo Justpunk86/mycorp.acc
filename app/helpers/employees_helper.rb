@@ -1,5 +1,7 @@
 module EmployeesHelper
   @@count = 0
+
+
   
   def get_rownum_emp
     count_emps = Employee.group(:emp_id).count

@@ -1,19 +1,10 @@
 class EmpJobsDataController < ApplicationController
-  def index
-    
-    @ejd = EmpJobsData.
-    joins("inner join employees on
-            emp_jobs_data.emp_id = employees.emp_id
-           inner join dic_job_title on
-            emp_jobs_data.job_title_id = dic_job_title.job_title_id
-            "
-        ).
-            select("employees.emp_id",
-                  "person_num",
-                  "job_start_date",
-                  "job_title",
-                  "emp_jobs_data.job_title_id")
+  
+  before_action :set_ejd, only: %i[index create]
 
+  def index
+    @new_ejd = EmpJobsData.new()
+    
   end
 
   def create
@@ -32,20 +23,29 @@ class EmpJobsDataController < ApplicationController
           select("job_title_id").first
 
 
-    ejd = EmpJobsData.new()
-    ejd.emp_id = emp_id.id
-    ejd.job_start_date = job_start_date
-    ejd.job_title_id = jti.id
-    ejd.save
+    @new_ejd = EmpJobsData.new()
+    @new_ejd.emp_id = emp_id.id
+    @new_ejd.job_start_date = job_start_date
+    @new_ejd.job_title_id = jti.id
 
-    redirect_to emp_jobs_data_path
+    if @new_ejd.valid?
+      @new_ejd.save
+      redirect_to emp_jobs_data_path
+    else
+      render 'index'
+    end
+
   end
 
   def destroy
+
     ejd = EmpJobsData.where(
-      "emp_id = ? and job_title_id = ?",
+      "emp_id = ? 
+        and job_title_id = ?
+        and job_start_date = ?",
       params[:emp_id],
-      params[:job_title_id]
+      params[:job_title_id],
+      params[:job_start_date],
       ).first
     ejd.delete
 
@@ -57,8 +57,23 @@ class EmpJobsDataController < ApplicationController
 
     params.require(:emp_jobs_data).
     permit(:emp_id,
-      :job_title_id)
+      :job_title_id,
+      :job_start_date)
   end
 
+  def set_ejd
+    @ejd = EmpJobsData.
+    joins("inner join employees on
+            emp_jobs_data.emp_id = employees.emp_id
+           inner join dic_job_title on
+            emp_jobs_data.job_title_id = dic_job_title.job_title_id
+            "
+        ).
+            select("employees.emp_id",
+                  "person_num",
+                  "job_start_date",
+                  "job_title",
+                  "emp_jobs_data.job_title_id")
+  end
   
 end

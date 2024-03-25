@@ -1,4 +1,6 @@
 class EmployeesController < ApplicationController
+
+  before_action :set_emp, only: [:update, :show, :destroy, :edit]
   
   def index
     @emps = Employee.all
@@ -18,25 +20,24 @@ class EmployeesController < ApplicationController
       redirect_to "#{emps_path}/new"
     else
        render action: 'new'
-      #render @new_emp
-      
     end
     
   end
 
   def show
-    @emp = Employee.find(params[:id])
+    #@emp = Employee.find(params[:id])
+
   end
 
   def edit
-    @emp = Employee.find(params[:id])
+    #@emp = Employee.find(params[:id])
   end
 
   def update
-    emp = Employee.find(params[:id])
+    #emp = Employee.find(params[:id])
 
-    if emp.update emp_params
-      redirect_to "#{emps_path}/#{emp.emp_id}/edit"
+    if @emp.update emp_params
+      redirect_to "#{emps_path}/#{@emp.emp_id}/edit"
     else
       render action: 'edit'
     end
@@ -44,14 +45,18 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    emp = Employee.find(params[:id])
-    emp.delete
+    #emp = Employee.find(params[:id])
+    @emp.delete
 
     redirect_to emps_path
   end
 
 
   private
+
+  def set_emp
+    @emp = Employee.find(params[:id])
+  end
 
   def emp_params
     params.

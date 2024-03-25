@@ -1,15 +1,16 @@
 drop function get_payroll_sheet;
 
 create function get_payroll_sheet(in_month integer, in_year integer)
-returns table(person_num text, bio text, job_title text, 
+returns table(person_num text, full_name text, job_title text, 
 			base_sal numeric, worked_days integer, sal_days integer,
-			piece_job numeric, bonus numeric, tax numeric, sick_days integer, sick_payments numeric, tot_payment numeric)
+			piece_job numeric, bonus numeric, tax numeric, sick_days integer, 
+			sick_payments numeric, tot_payment numeric)
 as $$
 	with get_origin_data as
 	(select e.person_num,
 		e.last_name||' '||
 		substring(e.first_name,1,1)||'.'||
-		substring(e.father_name,1,1)||'.' as BIO,
+		substring(e.father_name,1,1)||'.' as full_name,
 		get_job_title(e.person_num , in_month, in_year) job_title,
 		get_salary(e.person_num , in_month, in_year) base_sal,
 		get_worked_days(e.person_num ,in_month,in_year) as worked_days,
@@ -31,12 +32,9 @@ as $$
 		 get_tax(e.person_num, in_month, in_year)) over (partition by e.person_num) as tot_payment
 		
 	from employees e
-	join emp_jobs_data ejd
-		on e.emp_id  = ejd.emp_id  
-	join emp_salary_data esd
-		on e.emp_id = esd.emp_id)
+	)
 	select od.person_num,
-			od.BIO,
+			od.full_name,
 			od.job_title,
 			od.base_sal,
 			od.worked_days,

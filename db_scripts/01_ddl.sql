@@ -49,15 +49,15 @@ create table emp_jobs_data (
 	foreign key(job_title_id) references dic_job_title(job_title_id)
 	
 );
-
 create table emp_salary_data(	
 	emp_id				integer not null,
 	salary_start_date	date not null,
-	salary				Numeric(7,2) not null,
-	primary key(emp_id,salary),
+	salary				Numeric(9,2) not null,
+	primary key(emp_id,salary_start_date),
 	constraint uniq_emp_salary_data unique(emp_id,salary,salary_start_date),
 	foreign key(emp_id) references employees(emp_id)
 );
+
 
 create table emp_sick_data (
 	emp_id				integer not null,
@@ -85,11 +85,13 @@ create table emp_piecework_data (
 
 create table emp_bonus_data	(
 	emp_id			integer not null,
+	order_num		integer not null,
 	payment_date	date not null,
 	amount			Numeric(999,2) not null,
-	primary key(emp_id),
+	primary key(emp_id, order_num),	
 	foreign key(emp_id) references employees(emp_id)
 );
+
 
 create table dic_sick_rate(
 id			integer generated always as identity not null,

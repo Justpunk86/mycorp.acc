@@ -18,12 +18,15 @@ Rails.application.routes.draw do
   get '/total_sheet' => 'total_sheet#index'
 
   get '/dic_job_title' => 'dic_job_title#index'
+  post '/dic_job_title' => 'dic_job_title#create'
+  delete '/dic_job_title/:id' => 'dic_job_title#destroy'
+  
   get '/dic_pay_params' => 'dic_pay_params#index'
   get '/dic_sick_rate' => 'dic_sick_rate#index'
 
   get '/emp_jobs_data' => 'emp_jobs_data#index'
   post '/emp_jobs_data' => 'emp_jobs_data#create'
-  delete '/emp_jobs_data/:emp_id&:job_title_id' => 'emp_jobs_data#destroy'
+  delete '/emp_jobs_data/:emp_id&:job_title_id&:job_start_date' => 'emp_jobs_data#destroy'
 
   get '/emp_salary_data' => 'emp_salary_data#index'
   post '/emp_salary_data' => 'emp_salary_data#create'

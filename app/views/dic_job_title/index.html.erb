@@ -7,17 +7,49 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col">Должность</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @dic_job_title.each do |t| %>
 			<tr>
 				<td> <%= get_rownum_psh %> </td>
-				<td> <%= t.job_title %>	</td>
+				<td> <%= t.job_title %>	
+					
+					<p class="emp_error">
+						
+						<% if t %>
+							<%= t.errors[:job_title_id].first %>
+						<% end %>
+					</p>
+				</td>
+				<td>
+					<%= form_with model: @dic_job_title, url: "#{dic_job_title_path}/#{t.job_title_id}", method: :delete, date: {turbo: false} do |f| %>
+					<%= f.submit "удалить" %>
+					<% end %>
+				</td>
 			</tr>
 			<% end %>
 			<% reset_row_num %>
+			<%= form_with model: @new_job_title, url: dic_job_title_path, method: :post, date: {turbo: false} do |f| %>
+			<tr>
+				<td></td>
+				<td>
+					<%= f.text_field :job_title %>
+					<span class="emp_error">
+					<%= @new_job_title.errors[:job_title].first %>
+					</span>
+				</td>
+
+				<td>
+					
+					<%= f.submit "сохранить" %>
+				</td>
+			</tr>
+			<% end %>
 		</tbody>
 	</table>
+
+	
 
 </div>

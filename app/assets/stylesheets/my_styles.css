@@ -6,7 +6,18 @@
 	text-align: left;
 }
 
+.emp_attrs_container {
+	font-size: 150%;
+	text-align: left;
+	float: left;
+	margin-right: 100px;
+	display: inline;
+	position: static;
+
+}
+
 .inner_left_container {
+	font-size: 120%;
 	text-align: left;
 	float: left;
 	margin: 10px;
@@ -14,12 +25,12 @@
 	position: static;
 }
 
-.inner_right_container {
-	text-align: left;
-	float: right;
-	margin: 10px;
-	display: block;
-	position: static;
+.emp_attr {
+	font-size: 100%;
+	width: 450px;
+	height: 70px;
+	margin-bottom: 70px;
+	margin-top: 70px;
 }
 
 .bottom_container {

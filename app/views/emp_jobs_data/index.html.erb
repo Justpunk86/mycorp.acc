@@ -23,9 +23,10 @@
 				</td>
 				<td> <%= j.job_start_date %> </td>
 				<td> <%= j.job_title %> </td>
-				<td> <div class="emps_index">
-						<%= form_for :emp_jobs_data, 
-							url: "#{emp_jobs_data_path}/#{j.emp_id}&#{j.job_title_id}",
+				<td> 
+					<div class="emps_index">
+						<%= form_with model: @ejd, 
+							url: "#{emp_jobs_data_path}/#{j.emp_id}&#{j.job_title_id}&#{j.job_start_date}",
 							method: :delete,
 							data: {turbo: false} do |f| %>
 						
@@ -38,7 +39,7 @@
 			<% reset_row_num %>
 			<tr>
 				
-				<%= form_for :emp_jobs_data, method: :post, url: "#{emp_jobs_data_path}" do |f| %>
+				<%= form_with model: @new_ejd, method: :post, url: "#{emp_jobs_data_path}" do |f| %>
 					<td>
 						
 					</td>
@@ -52,15 +53,24 @@
 						<%= f.select :job_title, DicJobTitle.order(:job_title).map {|jt| jt.job_title } %>
 						
 					</td>
-					<td><%= f.submit 'сохранить' %></td>
-					
+					<td><%= f.submit 'сохранить' %>
+
+					</td>
+					<tr>
+						<td colspan="5">
+							<span class="emp_error">
+								<%= @new_ejd.errors[:emp_id].first %>
+							</span></td>
+						
+					</tr>
+
 				<% end %>
 				
-				
-				
-				
-				
 			</tr>
+
+			
+
+
 		</tbody>
 	</table>
 

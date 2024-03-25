@@ -19,7 +19,7 @@
 			<label for="year">год</label>
 			<select name="year", id="year" >
 				<option value=<%= @year %>><%= @year %></option>
-				<% 1900.upto(2024).map do |y|%>
+				<% 2014.upto(2024).map do |y|%>
 					<option><%= y.to_s %></option>
 				<% end %>
 			</select>

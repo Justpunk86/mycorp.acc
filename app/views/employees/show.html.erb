@@ -1,41 +1,42 @@
 <a href="/#">на главную</a>
 
 <div class="container">
-	
-	<%= form_with model: @emp, url: "#{emps_path}/show", method: :get do |f| %>
-
 	<h2>
 		<%= @emp.person_num %></br> 	
 	</h2>
+	
+	<%= form_with model: @emp, url: "#{emps_path}/#{@emp.emp_id}", method: :get do |f| %>
+
+
 
 	<div class="inner_left_container">
 		
-		<%= f.label :Фамилия %>
+		<%= f.label :Фамилия %></br>
 		<%= f.text_field :last_name %></br>
-		<%= f.label :Имя %>
+		<%= f.label :Имя %></br>
 		<%= f.text_field :first_name %></br>
-		<%= f.label :Отчество %>
+		<%= f.label :Отчество %></br>
 		<%= f.text_field :father_name %></br>
-		<%= f.label :СНИЛС %>
+		<%= f.label :СНИЛС %></br>
 		<%= f.text_field :snils %></br>
-		<%= f.label :ИНН %>
+		<%= f.label :ИНН %></br>
 		<%= f.text_field :tin %></br>
-	</div>
+	<!-- </div>
 	
-	<div class="inner_right_container">
+	<div class="inner_left_container"> -->
 		
-		<%= f.label "Серия паспорта" %>
+		<%= f.label "Серия паспорта" %></br>
 		<%= f.text_field :passport_sn %></br>
-		<%= f.label "Номер паспорта" %>
+		<%= f.label "Номер паспорта" %></br>
 		<%= f.text_field :passport_num %></br>
-		<%= f.label "Дата приёма" %>
+		<%= f.label "Дата приёма" %></br>
 		<%= f.text_field :onboarding_date %></br>
-		<%= f.label "Дата увольнения" %>
+		<%= f.label "Дата увольнения" %></br>
 		<%= f.text_field :leaving_date %></br>
-		<%= f.label "Дата начала трудового стажа" %>
+		<%= f.label "Дата начала трудового стажа" %></br>
 		<%= f.text_field :insurance_start_date %></br>
 		
-	</div>
+	<!-- </div> -->
 
 	<% end %>
 </div>
