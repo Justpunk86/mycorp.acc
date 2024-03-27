@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   get '/emp_sick_data' => 'emp_sick_data#index'
   post '/emp_sick_data' => 'emp_sick_data#create'
-  delete '/emp_sick_data/:emp_id' => 'emp_sick_data#destroy'
+  delete '/emp_sick_data/:emp_id&:date_start_sick' => 'emp_sick_data#destroy'
 
   get '/emp_piecework_data' => 'emp_piecework_data#index'
   post '/emp_piecework_data' => 'emp_piecework_data#create'
