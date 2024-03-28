@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   get '/emp_piecework_data' => 'emp_piecework_data#index'
   post '/emp_piecework_data' => 'emp_piecework_data#create'
-  delete '/emp_piecework_data/:emp_id' => 'emp_piecework_data#destroy'
+  delete '/emp_piecework_data/:emp_id&:contract_number' => 'emp_piecework_data#destroy'
 
 
   get '/emp_bonus_data' => 'emp_bonus_data#index'

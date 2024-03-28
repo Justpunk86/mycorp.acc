@@ -27,8 +27,8 @@
 				<td> <%= j.contract_amount %> </td>
 				<td> <%= j.payment_date %> </td>
 				<td> <div class="emps_index">
-						<%= form_for :emp_piecework_data, 
-							url: "#{emp_piecework_data_path}/#{j.emp_id}",
+						<%= form_with model: @epd, 
+							url: "#{emp_piecework_data_path}/#{j.emp_id}&#{j.contract_number}",
 							method: :delete,
 							data: {turbo: false} do |f| %>
 						
@@ -41,7 +41,7 @@
 			<% reset_row_num %>
 		
 			<tr>
-				<%= form_for :emp_piecework_data, method: :post, url: "#{emp_piecework_data_path}" do |f| %>
+				<%= form_with model: @new_epd, method: :post, url: "#{emp_piecework_data_path}" do |f| %>
 					<td>
 						
 					</td>
@@ -65,6 +65,17 @@
 					</td>
 
 					<td><%= f.submit 'сохранить' %></td>
+
+					<tr>
+						<td colspan="8">
+							<span class="emp_error">
+								<%= @new_epd.errors[:contract_amount].first %>
+								<%= @new_epd.errors[:contract_number].first %>
+								<%= @new_epd.errors[:contract_date].first %>
+								<%= @new_epd.errors[:emp_id].first %>
+							</span></td>
+						
+					</tr>
 					
 				<% end %>
 			</tr>
