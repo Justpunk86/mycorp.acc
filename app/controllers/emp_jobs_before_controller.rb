@@ -1,14 +1,9 @@
 class EmpJobsBeforeController < ApplicationController
+  before_action :set_ejb, only: %i[index create]
+
   def index
-    @ejb = EmpJobsBefore.
-    joins("inner join employees on
-            emp_jobs_before.emp_id = employees.emp_id"
-        ).
-            select("employees.emp_id",
-                  "person_num",
-                  "start_date",
-                  "end_date",
-                  "corp_name")
+    @new_ejb = EmpJobsBefore.new()
+
   end
 
   def create
@@ -28,14 +23,19 @@ class EmpJobsBeforeController < ApplicationController
 
     end_date = Date.new(ye.to_i,me.to_i,de.to_i)
 
-    ejb = EmpJobsBefore.new()
-    ejb.emp_id = emp_id.id
-    ejb.start_date = start_date
-    ejb.end_date = end_date
-    ejb.corp_name = params[:emp_jobs_before][:corp_name]
-    ejb.save
+    @new_ejb = EmpJobsBefore.new()
+    @new_ejb.emp_id = emp_id.id
+    @new_ejb.start_date = start_date
+    @new_ejb.end_date = end_date
+    @new_ejb.corp_name = params[:emp_jobs_before][:corp_name]
 
-    redirect_to emp_jobs_before_path
+    if @new_ejb.valid?
+      @new_ejb.save
+      redirect_to emp_jobs_before_path
+    else
+      render action: 'index'
+    end
+    
   end
 
   def destroy
@@ -48,5 +48,18 @@ class EmpJobsBeforeController < ApplicationController
     ejb.delete
 
     redirect_to emp_jobs_before_path
+  end
+
+  private
+  def set_ejb
+    @ejb = EmpJobsBefore.
+    joins("inner join employees on
+            emp_jobs_before.emp_id = employees.emp_id"
+        ).
+            select("employees.emp_id",
+                  "person_num",
+                  "start_date",
+                  "end_date",
+                  "corp_name")
   end
 end

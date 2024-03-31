@@ -1,14 +1,8 @@
 class EmpBonusDataController < ApplicationController
+  before_action :get_ebd, only: %i[index create]
+
   def index
-    @ebd = EmpBonusData.
-    joins("inner join employees on
-            emp_bonus_data.emp_id = employees.emp_id"
-        ).
-            select("employees.emp_id",
-                  "person_num",
-                  "payment_date",
-                  "order_num",
-                  "amount")
+    @new_ebd = EmpBonusData.new()
   end
 
   def create
@@ -22,14 +16,19 @@ class EmpBonusDataController < ApplicationController
 
     payment_date = Date.new(y.to_i,m.to_i,d.to_i)
 
-    ebd = EmpBonusData.new()
-    ebd.emp_id = emp_id.id
-    ebd.order_num = params[:emp_bonus_data][:order_num]
-    ebd.payment_date = payment_date
-    ebd.amount = params[:emp_bonus_data][:amount]
-    ebd.save
+    @new_ebd = EmpBonusData.new()
+    @new_ebd.emp_id = emp_id.id
+    @new_ebd.order_num = params[:emp_bonus_data][:order_num]
+    @new_ebd.payment_date = payment_date
+    @new_ebd.amount = params[:emp_bonus_data][:amount]
 
-    redirect_to emp_bonus_data_path
+    if @new_ebd.valid?
+      @new_ebd.save
+      redirect_to emp_bonus_data_path
+    else
+      render action: 'index'
+    end
+
   end
 
   def destroy
@@ -41,5 +40,19 @@ class EmpBonusDataController < ApplicationController
     ebd.delete
 
     redirect_to emp_bonus_data_path
+  end
+
+  private
+  def get_ebd
+    @ebd = EmpBonusData.
+    joins("inner join employees on
+            emp_bonus_data.emp_id = employees.emp_id"
+        ).
+            select("employees.emp_id",
+                  "person_num",
+                  "payment_date",
+                  "order_num",
+                  "amount")
+
   end
 end
