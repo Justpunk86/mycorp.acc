@@ -51,6 +51,15 @@
 					</td>
 					<td><%= f.submit 'сохранить' %></td>
 					
+					<tr>
+						<td colspan="5">
+							<span class="emp_error">
+								<%= @new_esd.errors[:salary].first %>
+								<%= @new_esd.errors[:emp_id].first %>
+							</span></td>
+						
+					</tr>
+
 				<% end %>
 			</tr>
 		</tbody>

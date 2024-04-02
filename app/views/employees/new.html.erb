@@ -47,7 +47,6 @@
 			<div class="emp_attr">
 				<%= f.label :ИНН %><br>
 
-				
 				<%= f.text_field :tin %>	
 				<p class="emp_error">	
 					<%= @new_emp.errors[:tin].first %>
@@ -75,7 +74,7 @@
 
 			<div class="emp_attr">
 				<%= f.label "Дата приёма" %><br>
-				<%= f.text_field :onboarding_date %>
+				<%= f.date_select :onboarding_date, method: "written_on", start_year: 2005, use_month_numbers: true, include_blank: true %>
 				<p class="emp_error">	 
 					<%= @new_emp.errors[:onboarding_date].first %>
 				</p>
@@ -84,18 +83,19 @@
 			<div class="emp_attr">
 				<%= f.label "Дата увольнения" %><br>
 				<%= f.check_box :leaving_date, id: "chk_ld", value: 0 %>
-				<%= f.text_field :leaving_date, disabled: true %> </p>
+				
+				<%= f.date_select :leaving_date, method: "written_on", disabled: true,  start_year: 2005, use_month_numbers: true, include_blank: true %> 
 				<p class="emp_error">	 
 					<%= @new_emp.errors[:leaving_date].first %>
+				</p>
 					
 			</div>
 
 			<div class="emp_attr">
 				<%= f.label "Дата начала трудового стажа" %><br>
-				<%= f.text_field :insurance_start_date %>
+				<%= f.date_select :insurance_start_date, method: "written_on", start_year: 2005, use_month_numbers: true, include_blank: true %>
 				<p class="emp_error">	
 					<%= @new_emp.errors[:insurance_start_date].first %>
-					
 				</p>
 			</div>
 			<div class="inner_right_container">
