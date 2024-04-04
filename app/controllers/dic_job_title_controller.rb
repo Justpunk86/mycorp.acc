@@ -3,21 +3,7 @@ class DicJobTitleController < ApplicationController
 before_action :set_jt, only: [:index, :create, :destroy]
 
   def index
-
     @new_job_title = DicJobTitle.new
-
-    @emp_jobs_data = []
-    @dic_job_title.each do |jt|
-      ejd = EmpJobsData.find_by job_title_id: jt.id
-      if ejd
-        @emp_jobs_data.push ejd
-      end
-      
-      if @emp_jobs_data.count > 0
-        jt.errors.add :job_title_id, "*есть связанные записи"
-      end 
-      @emp_jobs_data = []
-    end
 
   end
 
@@ -30,7 +16,6 @@ before_action :set_jt, only: [:index, :create, :destroy]
       redirect_to dic_job_title_path
     else
       render action: 'index'
-
     end
   end
 

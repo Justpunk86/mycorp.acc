@@ -12,6 +12,7 @@
 	</thead>
 	<tbody>
 		<% @emps.each do |e| %>
+		<% emp_check_fk %>
 		<tr>
 				<td>
 					<%= get_rownum_psh %>
@@ -29,7 +30,12 @@
 									method: :delete,
 									data: {turbo: false} do |f| %>
 							
-							<%= f.submit 'delete' %>
+							<% if e.errors[:emp_id].count > 0 %>
+								<%= f.submit 'delete', disabled: true %>
+							<% else %>
+								<%= f.submit 'delete' %>
+							<% end %>	
+
 						<% end %>
 						</div>
 
@@ -52,6 +58,11 @@
 							<%= f.submit 'show' %>
 						<% end %>
 						</div>
+						<p class="emp_error">
+							<% if e %>
+								<%= e.errors[:emp_id].first %>
+							<% end %>
+						</p>
 				</td>
 		</tr>
 		<% end %>

@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   
   def index
     @emps = Employee.all
-    
+
   end
 
   def new
@@ -25,16 +25,14 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    #@emp = Employee.find(params[:id])
 
   end
 
   def edit
-    #@emp = Employee.find(params[:id])
+
   end
 
   def update
-    #emp = Employee.find(params[:id])
 
     if @emp.update emp_params
       redirect_to "#{emps_path}/#{@emp.emp_id}/edit"
@@ -45,7 +43,7 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    #emp = Employee.find(params[:id])
+
     @emp.delete
 
     redirect_to emps_path

@@ -12,6 +12,7 @@
 		</thead>
 		<tbody>
 			<% @dic_job_title.each do |t| %>
+			<% title_check_fk %>
 			<tr>
 				<td> <%= get_rownum_psh %> </td>
 				<td> <%= t.job_title %>	
@@ -25,7 +26,12 @@
 				</td>
 				<td>
 					<%= form_with model: @dic_job_title, url: "#{dic_job_title_path}/#{t.job_title_id}", method: :delete, date: {turbo: false} do |f| %>
-					<%= f.submit "удалить" %>
+
+						<% if t.errors[:job_title_id].count > 0 %>
+							<%= f.submit 'удалить', disabled: true %>
+						<% else %>
+							<%= f.submit "удалить" %>
+						<% end %>
 					<% end %>
 				</td>
 			</tr>
