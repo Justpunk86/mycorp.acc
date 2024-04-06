@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-  before_action :authenticate_user!, only: %i[new edit]
+  # before_action :authenticate_user!, only: %i[new edit]
   
   before_action :set_emp, only: [:update, :show, :destroy, :edit]
 

@@ -1,5 +1,3 @@
-
-
 var chk_leaving_date;
 var int_leaving_date;
 
