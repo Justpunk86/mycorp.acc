@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_041922) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_21_141954) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_041922) do
     t.index ["tin"], name: "employees_tin_key", unique: true
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "role_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+  end
+
+  create_table "table_2", id: false, force: :cascade do |t|
+    t.integer "n"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,8 +122,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_041922) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "emp_bonus_data", "employees", column: "emp_id", primary_key: "emp_id", name: "emp_bonus_data_emp_id_fkey"
@@ -118,4 +135,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_041922) do
   add_foreign_key "emp_piecework_data", "employees", column: "emp_id", primary_key: "emp_id", name: "emp_piecework_data_emp_id_fkey"
   add_foreign_key "emp_salary_data", "employees", column: "emp_id", primary_key: "emp_id", name: "emp_salary_data_emp_id_fkey"
   add_foreign_key "emp_sick_data", "employees", column: "emp_id", primary_key: "emp_id", name: "emp_sick_data_emp_id_fkey"
+  add_foreign_key "roles_users", "roles"
+  add_foreign_key "roles_users", "users"
 end

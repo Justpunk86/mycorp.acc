@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  get '/users/admin' => 'users#admin'
+  get '/users/new' => 'users#new'
+  post '/users/admin' => 'users#create'
+  # put '/users/:id' => 'users#update'
+  delete '/users/:user_id&:role_id' => 'users#destroy'
+
   root to: "home#index"
 
   # get '/' => 'home#index'
