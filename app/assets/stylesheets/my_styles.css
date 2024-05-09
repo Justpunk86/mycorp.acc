@@ -13,6 +13,10 @@ caption {
 	text-align: left;
 }
 
+.container_right {
+	text-align: right;
+}
+
 .emp_attrs_container {
 	font-size: 150%;
 	text-align: left;

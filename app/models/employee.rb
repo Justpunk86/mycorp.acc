@@ -3,69 +3,70 @@ class Employee < ApplicationRecord
   # has_many :emp_salary_data
 
   validates :last_name, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
+  
   validates :last_name, 
               format: {with: /\A[A-ZА-ЯЁ][a-zа-яё]+\z/, 
                 message: "*фамилия может содержать только буквы"}
 
   validates :first_name, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
 
   validates :first_name, 
               format: {with: /\A[A-ZА-ЯЁ][a-zа-яё]+\z/, 
                 message: "*имя может содержать только буквы"}
 
   validates :father_name, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
   
   validates :father_name, 
               format: {with: /\A[A-ZА-ЯЁ][a-zа-яё]+\z/, 
                 message: "*отчество может содержать только буквы"}
 
   validates :snils, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
+
   validates :snils, 
               format: {with: /\A[0-9]+\z/, 
-                message: "*отчество может содержать только буквы"}  
+                message: "*СНИЛС может содержать только цифры"}  
   validates :snils, 
-              length: {minimum: 11, 
-                        minimum: 11, 
-                      message: "*кол-во цифр должно быть равно 11"}
+              length: {is: 11, too_long: "*кол-во цифр должно быть равно 11"}
   validates :snils, 
               uniqueness: true                      
 
   validates :tin, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true,message: "*атрибут должен быть заполнен"]
+
   validates :tin,               
               format: {with: /\A[0-9]+\z/, 
-                message: "*отчество может содержать только буквы"}
+                message: "*ИНН может содержать только цифры"}
+
   validates :tin,  
-              length: {minimum: 10, 
-                      maximum: 10, 
-                      message: "*кол-во цифр должно быть равно 10"}                 
+              length: {is: 10, too_long: "*кол-во цифр должно быть равно 10"}                 
   validates :tin,                  
               uniqueness: true
 
   validates :passport_sn, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
+
   validates :passport_sn, 
               format: {with: /\A[0-9]+\z/, 
-                message: "*отчество может содержать только буквы"}  
+                message: "*серия паспорта может содержать только цифры"}  
+
   validates :passport_sn,       
-              length: {minimum: 4, 
-                       maximum: 4, 
-                      message: "*кол-во цифр должно быть равно 4"}            
+              length: {is: 4, too_long: "*кол-во цифр должно быть равно 4"}            
 
 
   validates :passport_num, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
+
   validates :passport_num,
               format: {with: /\A[0-9]+\z/, 
-                message: "*отчество может содержать только буквы"}  
+                message: "*номер паспорта может содержать только цифры"}  
+  
   validates :passport_num,
-              length: {minimum: 6, 
-                      maximum: 6,
-                      message: "*кол-во цифр должно быть равно 6"}  
+              length: {is: 6, too_long: "*кол-во цифр должно быть равно 6"}  
+  
   validates :passport_num,
               uniqueness: {
                 scope: :passport_sn,
@@ -74,11 +75,11 @@ class Employee < ApplicationRecord
 
 
   validates :onboarding_date, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true,message: "*атрибут должен быть заполнен"]
   
 
   validates :insurance_start_date, 
-              presence: {message: "*атрибут должен быть заполнен"}
+              presence: [true, message: "*атрибут должен быть заполнен"]
   
 
   
