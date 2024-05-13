@@ -54,7 +54,13 @@ class Employee < ApplicationRecord
                 message: "*серия паспорта может содержать только цифры"}  
 
   validates :passport_sn,       
-              length: {is: 4, too_long: "*кол-во цифр должно быть равно 4"}            
+              length: {is: 4, too_long: "*кол-во цифр должно быть равно 4"}   
+
+  validates :passport_sn,
+              uniqueness: {
+                scope: :passport_num,
+                message: "*уже существует указанная серия и номер"
+              }         
 
 
   validates :passport_num, 
@@ -67,15 +73,15 @@ class Employee < ApplicationRecord
   validates :passport_num,
               length: {is: 6, too_long: "*кол-во цифр должно быть равно 6"}  
   
-  validates :passport_num,
-              uniqueness: {
-                scope: :passport_sn,
-                message: "*уже существует указанная серия и номер"
-              }                      
+  # validates :passport_num,
+  #             uniqueness: {
+  #               scope: :passport_sn,
+  #               message: "*уже существует указанная серия и номер"
+  #             }
 
 
   validates :onboarding_date, 
-              presence: [true,message: "*атрибут должен быть заполнен"]
+              presence: [true, message: "*атрибут должен быть заполнен"]
   
 
   validates :insurance_start_date, 

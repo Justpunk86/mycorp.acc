@@ -1,4 +1,4 @@
-require 'spec_helper'
+# require 'spec_helper'
 require 'rails_helper'
 
 describe Employee, type: :model do
@@ -39,18 +39,16 @@ describe Employee, type: :model do
   end
 
   describe 'validation uniqueness' do
-    
-    it { should validate_uniqueness_of(:snils) }
-    it { should validate_uniqueness_of(:tin) }
+    subject { build(:employee) }
+    it { should validate_uniqueness_of(:snils).case_insensitive }
+    it { should validate_uniqueness_of(:tin).case_insensitive }
+
+    it { should validate_uniqueness_of(:passport_sn).scoped_to(:passport_num) }
     # it { should validate_uniqueness_of(:passport_sn) }
-    # it { should validate_uniqueness_of(:passport_num) }
+
+
 
   end
 
 end
 
-# describe 'something' do
-#   it "does something" do
-
-#   end
-# end

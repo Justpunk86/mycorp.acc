@@ -4,8 +4,19 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  last_name: David
+  first_name: Heinemeier
+  father_name: Hansson
+  snils: 12345678901
+  tin: 1234567890
+  passport_sn: 1234
+  passport_num: 123456
+  onboarding_date: nil
+  insurance_start_date: 01.02.2023
 # column: value
 #
 two: {}
 # column: value
+
+
